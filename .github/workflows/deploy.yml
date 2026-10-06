@@ -52,13 +52,21 @@ jobs:
           mkdir -p dist/brand
           cp ./brand/index.html dist/brand/
 
-          # SEO / PWA files
+          # SEO / PWA files — each optional, so guard with `if` rather than
+          # `[ -f x ] && cp`, which returns a non-zero status when the file is
+          # absent and would abort the step under `set -e`.
           for f in sitemap.xml robots.txt site.webmanifest; do
-            [ -f "$f" ] && cp "$f" dist/
+            if [ -f "$f" ]; then cp "$f" dist/; fi
           done
 
-          # Custom domain
-          [ -f CNAME ] && cp CNAME dist/
+          # Custom domain. Optional: while DNS is not yet live the file is
+          # intentionally absent so the site stays reachable on github.io.
+          if [ -f CNAME ]; then
+            cp CNAME dist/
+            echo "Custom domain: $(cat CNAME)"
+          else
+            echo "Custom domain: none (CNAME absent - serving on github.io)"
+          fi
 
           # Stop GitHub Pages from running Jekyll over the output
           touch dist/.nojekyll

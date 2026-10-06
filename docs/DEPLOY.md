@@ -137,6 +137,17 @@ gh repo create veritrace-ai/veritrace-website \
 
 ## 3. Custom domain
 
+> **Current state: DISABLED.** `CNAME` is not tracked in the repository — the domain is kept
+> on disk as `CNAME.disabled`. While it is absent, the site serves normally on
+> `https://veritrace-ai.github.io/veritrace-website/`. This is deliberate: pointing at an
+> unresolvable domain makes the site unreachable at *every* address.
+>
+> Re-enable once DNS is verified live (§0 and §3):
+>
+> ```bash
+> git mv CNAME.disabled CNAME && git commit -m "Enable custom domain" && git push
+> ```
+
 The repository contains a `CNAME` file holding the domain. GitHub Pages reads it on every
 deploy, so the domain survives redeploys automatically. Change it by editing that one file:
 
@@ -144,6 +155,10 @@ deploy, so the domain survives redeploys automatically. Change it by editing tha
 echo "yourdomain.com" > CNAME
 git commit -am "Set custom domain" && git push
 ```
+
+You must **also** set the domain in **Settings → Pages → Custom domain**. Removing the
+`CNAME` file alone does not reliably clear an already-configured custom domain — always
+clear it in the UI as well.
 
 ### DNS records (add these at your DNS provider)
 
