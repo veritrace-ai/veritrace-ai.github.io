@@ -165,7 +165,9 @@ third-party use, convert the text to outlines first.
 Pushing to `main` triggers `.github/workflows/deploy.yml`, which rebuilds the pages,
 assembles a clean publish directory and deploys it to GitHub Pages.
 
-One-time setup, DNS records and troubleshooting: **[docs/DEPLOY.md](docs/DEPLOY.md)**.
+One-time setup — including the domain-delegation prerequisite that causes most
+custom-domain failures — plus DNS records and troubleshooting:
+**[docs/DEPLOY.md](docs/DEPLOY.md)**.
 
 ---
 
