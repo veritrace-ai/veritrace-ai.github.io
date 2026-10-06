@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none" role="img" aria-label="VeriTrace AI">
+  <title>VeriTrace AI - stacked lockup</title>
+  <defs>
+    <linearGradient id="vtStackMark" x1="62" y1="34" x2="138" y2="118" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1B5FD9"/>
+      <stop offset=".52" stop-color="#2E7CF6"/>
+      <stop offset="1" stop-color="#1751C4"/>
+    </linearGradient>
+  </defs>
+
+  <g transform="translate(62 30)">
+    <path d="M24 3.4 41.6 9.9v12.7c0 10.2-8.1 18-17.6 22.4-9.5-4.4-17.6-12.2-17.6-22.4V9.9L24 3.4Z"
+          stroke="url(#vtStackMark)" stroke-width="2.4" stroke-linejoin="round"/>
+    <g fill="url(#vtStackMark)">
+      <rect x="14.1" y="12.2" width="5.7" height="5.7" rx="1.5"/>
+      <rect x="22.9" y="12.2" width="5.7" height="5.7" rx="1.5"/>
+      <rect x="14.1" y="21" width="5.7" height="5.7" rx="1.5"/>
+      <circle cx="25.75" cy="23.85" r="2.85"/>
+    </g>
+    <path d="M14.1 33.2h8.3l4.1-4.05h6.4" stroke="url(#vtStackMark)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M29.7 26.2 32.8 29.15l-3.1 2.95" stroke="url(#vtStackMark)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <text x="100" y="148" text-anchor="middle"
+        font-family="Manrope, Inter, 'Segoe UI', system-ui, sans-serif"
+        font-size="27" font-weight="800" letter-spacing="-1.1" fill="#0B2545">Veri<tspan fill="#1B5FD9">Trace</tspan></text>
+  <text x="100" y="167" text-anchor="middle"
+        font-family="Manrope, Inter, 'Segoe UI', system-ui, sans-serif"
+        font-size="8.6" font-weight="600" letter-spacing="4.2" fill="#7387A0">PRODUCT TRUST LAYER</text>
+</svg>

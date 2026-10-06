@@ -1,0 +1,13 @@
+{
+  "name": "VeriTrace AI",
+  "short_name": "VeriTrace",
+  "description": "AI-powered product authentication, serialization and supply-chain traceability platform.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#030B14",
+  "theme_color": "#0A2540",
+  "lang": "en-IN",
+  "icons": [
+    { "src": "assets/img/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

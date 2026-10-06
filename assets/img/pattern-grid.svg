@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120" fill="none">
+  <!-- Decorative QR-inspired dotted grid -->
+  <g fill="#1B5FD9" fill-opacity="0.10">
+    <rect x="4" y="4" width="10" height="10" rx="2"/>
+    <rect x="22" y="4" width="10" height="10" rx="2"/>
+    <rect x="58" y="4" width="10" height="10" rx="2"/>
+    <rect x="76" y="4" width="10" height="10" rx="2"/>
+    <rect x="94" y="4" width="10" height="10" rx="2"/>
+    <rect x="4" y="22" width="10" height="10" rx="2"/>
+    <rect x="40" y="22" width="10" height="10" rx="2"/>
+    <rect x="76" y="22" width="10" height="10" rx="2"/>
+    <rect x="4" y="40" width="10" height="10" rx="2"/>
+    <rect x="22" y="40" width="10" height="10" rx="2"/>
+    <rect x="58" y="40" width="10" height="10" rx="2"/>
+    <rect x="94" y="40" width="10" height="10" rx="2"/>
+    <rect x="40" y="58" width="10" height="10" rx="2"/>
+    <rect x="76" y="58" width="10" height="10" rx="2"/>
+    <rect x="4" y="76" width="10" height="10" rx="2"/>
+    <rect x="22" y="76" width="10" height="10" rx="2"/>
+    <rect x="58" y="76" width="10" height="10" rx="2"/>
+    <rect x="94" y="76" width="10" height="10" rx="2"/>
+    <rect x="4" y="94" width="10" height="10" rx="2"/>
+    <rect x="40" y="94" width="10" height="10" rx="2"/>
+    <rect x="76" y="94" width="10" height="10" rx="2"/>
+    <rect x="94" y="94" width="10" height="10" rx="2"/>
+  </g>
+</svg>

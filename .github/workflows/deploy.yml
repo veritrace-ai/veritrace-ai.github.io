@@ -1,0 +1,84 @@
+name: Deploy to GitHub Pages
+
+# Publishes the site to GitHub Pages on every push to main.
+# The published artifact contains ONLY public files — build tooling,
+# page sources, partials and brand sheets are left out.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Never run two deploys at once; let an in-flight deploy finish.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Build site
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # Regenerate the root HTML from _pages/ + _partials/ so the deployed
+      # output can never drift from the committed sources.
+      - name: Build pages from sources
+        run: node build.js
+
+      - name: Assemble publish directory
+        run: |
+          set -euo pipefail
+          mkdir -p dist
+
+          # Public pages
+          cp ./*.html dist/
+
+          # Static assets
+          cp -r assets dist/
+
+          # Brand sheet (kept out of the main navigation, still linked internally)
+          mkdir -p dist/brand
+          cp ./brand/index.html dist/brand/
+
+          # SEO / PWA files
+          for f in sitemap.xml robots.txt site.webmanifest; do
+            [ -f "$f" ] && cp "$f" dist/
+          done
+
+          # Custom domain
+          [ -f CNAME ] && cp CNAME dist/
+
+          # Stop GitHub Pages from running Jekyll over the output
+          touch dist/.nojekyll
+
+          echo "Published files:"
+          find dist -type f | sort | sed 's/^/  /'
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    name: Deploy
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

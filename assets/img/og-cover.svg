@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" fill="none" role="img" aria-label="VeriTrace AI - Verify every product. Trace every journey.">
+  <title>VeriTrace AI - social share card</title>
+  <defs>
+    <linearGradient id="ogBg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0B2545"/>
+      <stop offset=".52" stop-color="#174B8C"/>
+      <stop offset="1" stop-color="#1B5FD9"/>
+    </linearGradient>
+    <linearGradient id="ogMark" x1="880" y1="150" x2="1080" y2="450" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#8AB7FB"/>
+    </linearGradient>
+    <radialGradient id="ogGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse"
+                    gradientTransform="translate(1010 300) rotate(90) scale(320)">
+      <stop offset="0" stop-color="#2E7CF6" stop-opacity=".55"/>
+      <stop offset="1" stop-color="#2E7CF6" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="ogGrid" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M60 0H0v60" stroke="#FFFFFF" stroke-opacity=".07" fill="none"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#ogBg)"/>
+  <rect width="1200" height="630" fill="url(#ogGrid)"/>
+  <rect width="1200" height="630" fill="url(#ogGlow)"/>
+
+  <!-- Brand lockup -->
+  <g transform="translate(88 82)">
+    <g transform="scale(.92)">
+      <path d="M24 3.4 41.6 9.9v12.7c0 10.2-8.1 18-17.6 22.4-9.5-4.4-17.6-12.2-17.6-22.4V9.9L24 3.4Z"
+            stroke="#FFFFFF" stroke-width="2.4" stroke-linejoin="round"/>
+      <g fill="#FFFFFF">
+        <rect x="14.1" y="12.2" width="5.7" height="5.7" rx="1.5"/>
+        <rect x="22.9" y="12.2" width="5.7" height="5.7" rx="1.5"/>
+        <rect x="14.1" y="21" width="5.7" height="5.7" rx="1.5"/>
+        <circle cx="25.75" cy="23.85" r="2.85"/>
+      </g>
+      <path d="M14.1 33.2h8.3l4.1-4.05h6.4" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M29.7 26.2 32.8 29.15l-3.1 2.95" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <text x="60" y="33"
+          font-family="Manrope, Inter, 'Segoe UI', system-ui, sans-serif"
+          font-size="26" font-weight="800" letter-spacing="-1.1" fill="#FFFFFF">Veri<tspan fill="#8AB7FB">Trace</tspan></text>
+  </g>
+
+  <!-- Headline -->
+  <text x="88" y="300"
+        font-family="Manrope, Inter, 'Segoe UI', system-ui, sans-serif"
+        font-size="68" font-weight="800" letter-spacing="-2.6" fill="#FFFFFF">Verify every product.</text>
+  <text x="88" y="378"
+        font-family="Manrope, Inter, 'Segoe UI', system-ui, sans-serif"
+        font-size="68" font-weight="800" letter-spacing="-2.6" fill="#8AB7FB">Trace every journey.</text>
+
+  <!-- Supporting line -->
+  <text x="88" y="440"
+        font-family="Inter, 'Segoe UI', system-ui, sans-serif"
+        font-size="23" font-weight="400" fill="#FFFFFF" fill-opacity=".74">AI-powered serialization, traceability and consumer engagement</text>
+  <text x="88" y="474"
+        font-family="Inter, 'Segoe UI', system-ui, sans-serif"
+        font-size="23" font-weight="400" fill="#FFFFFF" fill-opacity=".74">for Indian enterprises and MSMEs.</text>
+
+  <!-- Proof strip -->
+  <g transform="translate(88 528)">
+    <text font-family="JetBrains Mono, ui-monospace, monospace" font-size="15" font-weight="500"
+          letter-spacing="2.2" fill="#8AB7FB">2.4B+ CODES</text>
+    <text x="200" font-family="JetBrains Mono, ui-monospace, monospace" font-size="15" font-weight="500"
+          letter-spacing="2.2" fill="#8AB7FB">99.98% SCAN SUCCESS</text>
+    <text x="470" font-family="JetBrains Mono, ui-monospace, monospace" font-size="15" font-weight="500"
+          letter-spacing="2.2" fill="#8AB7FB">INDIA DATA RESIDENCY</text>
+  </g>
+
+  <!-- Domain -->
+  <text x="1112" y="560" text-anchor="end"
+        font-family="JetBrains Mono, ui-monospace, monospace" font-size="17" font-weight="500"
+        letter-spacing="1.4" fill="#FFFFFF" fill-opacity=".62">veritrace.in</text>
+
+  <!-- Large watermark symbol -->
+  <g transform="translate(806 128) scale(6.2)" opacity=".16">
+    <path d="M24 3.4 41.6 9.9v12.7c0 10.2-8.1 18-17.6 22.4-9.5-4.4-17.6-12.2-17.6-22.4V9.9L24 3.4Z"
+          stroke="url(#ogMark)" stroke-width="2.2" stroke-linejoin="round"/>
+    <path d="M14.1 33.2h8.3l4.1-4.05h6.4" stroke="url(#ogMark)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M29.7 26.2 32.8 29.15l-3.1 2.95" stroke="url(#ogMark)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- Accent rule -->
+  <rect x="88" y="498" width="86" height="4" rx="2" fill="#2E7CF6"/>
+</svg>

@@ -1,0 +1,20 @@
+# ---- Dependencies ----
+node_modules/
+npm-debug.log*
+yarn-error.log*
+
+# ---- Local preview / tooling (not part of the published site) ----
+_test/
+*.local
+
+# ---- OS / editor cruft ----
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# ---- Build output produced by the deploy workflow ----
+dist/

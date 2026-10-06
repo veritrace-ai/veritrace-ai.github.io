@@ -1,0 +1,11 @@
+{
+  "name": "veritrace-ai-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "VeriTrace AI marketing website — GSAP + ScrollTrigger + Lenis, static HTML.",
+  "scripts": {
+    "build": "node build.js",
+    "start": "node server.js",
+    "dev": "node build.js && node server.js"
+  }
+}
