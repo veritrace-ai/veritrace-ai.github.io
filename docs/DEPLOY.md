@@ -89,6 +89,32 @@ alongside, or the parking page will win.
 
 ---
 
+## 0.5 Repository name determines the URL
+
+GitHub Pages has two kinds of site, and the URL depends entirely on the repository name:
+
+| Repo name | Site type | URL |
+|---|---|---|
+| `<owner>.github.io` | **User / organisation site** | `https://<owner>.github.io` — served at the **root** |
+| anything else | Project site | `https://<owner>.github.io/<repo-name>` — served from a **subpath** |
+
+This repository is named **`veritrace-ai.github.io`**, so it is a user site and the site is
+served at:
+
+```
+https://veritrace-ai.github.io
+```
+
+> A user site must be named exactly `<owner>.github.io`. An organisation can have only one.
+> Renaming the repository from a project name to `<owner>.github.io` moves the site from the
+> subpath to the root — GitHub redirects the old URL automatically.
+
+All internal links in this project are **relative** (`assets/css/main.css`, `features.html`),
+so they resolve correctly at both the root and a subpath. If you ever introduce a
+root-absolute path (`/assets/...`), the site will only work as a user site.
+
+---
+
 ## 1. One-time repository setup
 
 1. Push this repository to GitHub (§2).
@@ -105,7 +131,7 @@ cd veritrace-website
 git init -b main
 git add .
 git commit -m "Initial commit"
-git remote add origin https://github.com/veritrace-ai/veritrace-website.git
+git remote add origin https://github.com/veritrace-ai/veritrace-ai.github.io.git
 git push -u origin main
 ```
 
@@ -127,11 +153,21 @@ git config user.email "dev@veritrace.in"
 ### If the repository does not exist yet
 
 ```bash
-gh repo create veritrace-ai/veritrace-website \
+gh repo create veritrace-ai/veritrace-ai.github.io \
   --public \
   --description "VeriTrace AI — product authentication, serialization and traceability" \
   --source . --remote origin --push
 ```
+
+### Renaming an existing project repo into a user site
+
+```bash
+gh repo rename veritrace-ai.github.io --repo veritrace-ai/veritrace-website --yes
+git remote set-url origin https://github.com/veritrace-ai/veritrace-ai.github.io.git
+```
+
+GitHub redirects the old repository URL, and Pages moves the site to the root on the next
+deploy.
 
 ---
 
@@ -139,7 +175,7 @@ gh repo create veritrace-ai/veritrace-website \
 
 > **Current state: DISABLED.** `CNAME` is not tracked in the repository — the domain is kept
 > on disk as `CNAME.disabled`. While it is absent, the site serves normally on
-> `https://veritrace-ai.github.io/veritrace-website/`. This is deliberate: pointing at an
+> `https://veritrace-ai.github.io`. This is deliberate: pointing at an
 > unresolvable domain makes the site unreachable at *every* address.
 >
 > Re-enable once DNS is verified live (§0 and §3):
@@ -177,6 +213,8 @@ For the `www` subdomain:
 |---|---|---|
 | CNAME | `www` | `veritrace-ai.github.io` |
 
+> The CNAME target is always `<owner>.github.io`, whichever kind of site you run.
+
 Optional IPv6 (recommended):
 
 | Type | Name | Value |
@@ -201,7 +239,7 @@ Optional IPv6 (recommended):
 
 ### Important: setting a custom domain redirects the github.io URL
 
-Once a custom domain is set, `https://<user>.github.io/<repo>/` returns a **301 redirect**
+Once a custom domain is set, the `github.io` URL returns a **301 redirect**
 to your domain. If DNS is not ready, the site becomes unreachable at *both* addresses.
 
 **If you need the site live before DNS is ready,** temporarily clear
@@ -233,7 +271,6 @@ npm run dev      # builds, then serves at http://localhost:5173
 
 Run the render check at <http://localhost:5173/_test/harness.html> and confirm every row is
 green before you push.
-
 ---
 
 ## 6. Verifying a deployment
@@ -264,6 +301,8 @@ gh run view --log-failed
 | `Cannot serve from your custom domain` until DNS is ready | Custom domain is set but unresolvable, so `github.io` also redirects away | Clear the Custom domain field temporarily (§3) |
 | Workflow fails: `Pages not enabled` | Pages source not set to GitHub Actions | Settings → Pages → Source → **GitHub Actions** |
 | Deploy succeeds, site 404s | DNS still propagating, or a conflicting record exists | `nslookup yourdomain.com 8.8.8.8` should return `185.199.x.153` |
+| Site only works at `/repo-name/`, not at the root | Repository is not named `<owner>.github.io` | Rename it (§0.5) |
+| Styles or links break after switching to a user site | A root-absolute path (`/assets/...`) was introduced | Use relative paths |
 | Domain shows the registrar's parking page | Placeholder A records still present | Replace them with the GitHub IPs (§3) — do not add alongside |
 | Domain reverts to `github.io` | `CNAME` missing from the artifact | Confirm `CNAME` is at the repo root and the workflow copies it |
 | Emails stopped working | Changing nameservers discarded the old MX records | Recreate MX records at the new DNS provider |

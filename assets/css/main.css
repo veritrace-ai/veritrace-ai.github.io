@@ -80,13 +80,16 @@
   --ff-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
   --ff-deva: 'Noto Sans Devanagari', 'Manrope', sans-serif;
 
-  /* ---- Fluid scale ---- */
-  --fs-display: clamp(2.6rem, 6.4vw, 6.2rem);
-  --fs-h1: clamp(2.15rem, 4.6vw, 3.85rem);
-  --fs-h2: clamp(1.8rem, 3.3vw, 2.85rem);
-  --fs-h3: clamp(1.28rem, 1.9vw, 1.72rem);
+  /* ---- Fluid scale ----
+     Display type is constrained by viewport HEIGHT as well as width. A
+     width-only scale makes the hero overflow on ordinary laptops, because
+     a 1366x768 screen has a wide viewport but very little vertical room. */
+  --fs-display: clamp(2.5rem, min(6.2vw, 9.4vh), 5.8rem);
+  --fs-h1: clamp(1.95rem, min(4.4vw, 6.6vh), 3.4rem);
+  --fs-h2: clamp(1.65rem, min(3.1vw, 4.6vh), 2.6rem);
+  --fs-h3: clamp(1.24rem, 1.9vw, 1.68rem);
   --fs-h4: clamp(1.05rem, 1.4vw, 1.2rem);
-  --fs-lead: clamp(1.02rem, 1.3vw, 1.2rem);
+  --fs-lead: clamp(1rem, 1.3vw, 1.18rem);
   --fs-body: 1rem;
   --fs-sm: .875rem;
   --fs-xs: .78rem;
@@ -750,8 +753,8 @@ body.vt-menu-open .drawer { pointer-events: auto; }
   min-height: 100svh;
   display: flex;
   align-items: center;
-  padding-top: clamp(6.5rem, 13vh, 9rem);
-  padding-bottom: clamp(2.5rem, 6vh, 4rem);
+  padding-top: clamp(5.5rem, 12vh, 8.5rem);
+  padding-bottom: clamp(2rem, 5vh, 3.5rem);
   z-index: var(--z-content);
   overflow: hidden;
   background:
@@ -794,6 +797,41 @@ body.vt-menu-open .drawer { pointer-events: auto; }
   line-height: 1;
 }
 .hero__proof-lbl { font-size: var(--fs-xs); color: var(--tx-lo); letter-spacing: .02em; }
+
+/* Short-viewport tuning.
+   Vertical space, not width, is the binding constraint on laptops. These
+   rules tighten the hero so it lands on one screen at 768px-tall displays
+   without shrinking type to the point of looking timid. */
+@media (min-width: 1025px) and (max-height: 900px) {
+  .hero { padding-top: clamp(5rem, 10vh, 6.5rem); }
+  .hero__sub { margin-bottom: 1.6rem; }
+  .hero__cta { margin-bottom: 1.7rem; }
+  .hero__title { margin-bottom: 1.1rem; }
+  .hero__eyebrow { margin-bottom: 1rem; }
+  .hero__proof { padding-top: 1.1rem; }
+  .hero__proof-num { font-size: 1.3rem; }
+  .passport { max-width: 372px; }
+}
+
+@media (min-width: 1025px) and (max-height: 760px) {
+  .hero { padding-top: 4.6rem; padding-bottom: 1.5rem; }
+  .hero__sub { margin-bottom: 1.15rem; font-size: 1rem; }
+  .hero__cta { margin-bottom: 1.2rem; }
+  .hero__title { margin-bottom: .85rem; }
+  .hero__eyebrow { margin-bottom: .8rem; }
+  .hero__proof { padding-top: .85rem; gap: 1.2rem; }
+  .hero__proof-num { font-size: 1.15rem; }
+  .hero__proof-lbl { font-size: .68rem; }
+  .hero__cta .btn--lg { padding: .8rem 1.5rem; font-size: .92rem; }
+  .passport { max-width: 320px; }
+  .chip { padding: .38rem .62rem; font-size: .68rem; }
+}
+
+@media (min-width: 1025px) and (max-height: 660px) {
+  .hero { min-height: auto; padding-top: 4.4rem; }
+  .hero__proof { display: none; }
+  .passport { max-width: 268px; }
+}
 
 /* Hero visual — digital product passport */
 .passport {
@@ -873,9 +911,9 @@ body.vt-menu-open .drawer { pointer-events: auto; }
   white-space: nowrap;
 }
 .chip strong { color: var(--vt-navy); font-weight: 600; }
-.chip--a { top: 11%; right: 2%; }
-.chip--b { bottom: 17%; left: -3%; }
-.chip--c { bottom: 4%; right: 8%; }
+.chip--a { top: 9%; right: -3%; }
+.chip--b { top: 47%; left: -7%; }
+.chip--c { bottom: -3%; right: 1%; }
 
 .scroll-cue {
   position: absolute;
@@ -1872,7 +1910,6 @@ body.vt-menu-open .drawer { pointer-events: auto; }
 
 @media (max-width: 1024px) {
   .nav__menu { display: none; }
-  .nav__actions .btn--ghost { display: none; }
   .nav__toggle { display: block; }
   .hero__grid { grid-template-columns: 1fr; }
   .hero { min-height: auto; padding-top: clamp(7rem, 20vh, 9rem); }
@@ -1906,8 +1943,9 @@ body.vt-menu-open .drawer { pointer-events: auto; }
   .footer__brand { grid-column: 1 / -1; }
   .hero__proof { gap: 1.3rem; }
   .stats { grid-template-columns: 1fr; }
-  .chip--a { top: 4%; right: -2%; }
-  .chip--b { bottom: 12%; left: -2%; }
+  .chip--a { top: 4%; right: -4%; }
+  .chip--b { top: 46%; left: -8%; }
+  .chip--c { bottom: -4%; right: 0; }
   .hide-mobile { display: none; }
   .show-mobile { display: initial; }
   .hpin__panel { width: 82vw; min-height: 340px; }
@@ -1921,15 +1959,8 @@ body.vt-menu-open .drawer { pointer-events: auto; }
   .brand__name { font-size: 1rem; }
 }
 
-/* Short desktop viewports — keep the hero on a single screen */
-@media (min-width: 1025px) and (max-height: 860px) {
-  .passport { max-width: 356px; }
-  .hero__proof { padding-top: 1.1rem; }
-  .hero__sub { margin-bottom: 1.7rem; }
-  .hero__cta { margin-bottom: 1.8rem; }
-  .hero__title { margin-bottom: 1.2rem; }
-  .hero__eyebrow { margin-bottom: 1.1rem; }
-}
+/* Short desktop viewports are handled next to the .hero rules above, where
+   display type is constrained by viewport height as well as width. */
 
 /* --------------------------------------------------------------------------
    29. REDUCED MOTION
