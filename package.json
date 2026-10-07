@@ -6,6 +6,8 @@
   "scripts": {
     "build": "node build.js",
     "start": "node server.js",
-    "dev": "node build.js && node server.js"
+    "dev": "node build.js && node server.js",
+    "seo": "node scripts/seo-check.mjs",
+    "seo:local": "SITE_URL=http://localhost:5173 node scripts/seo-check.mjs"
   }
 }

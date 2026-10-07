@@ -72,11 +72,125 @@ function fill(template, meta) {
     KEYWORDS: meta.keywords || 'product authentication, traceability, serialization, QR codes, India',
     ROBOTS: meta.robots || 'index, follow',
     CANONICAL: meta.canonical || 'https://veritrace.in/',
-    EXTRA_HEAD: meta.extraHead || ''
+    EXTRA_HEAD: meta.extraHead || '',
+    SCHEMA: meta.__schema || ''
   };
   return template.replace(/\{\{(\w+)\}\}/g, function (all, key) {
     return Object.prototype.hasOwnProperty.call(values, key) ? values[key] : all;
   });
+}
+
+/* --------------------------------------------------------------------------
+   Structured data (JSON-LD)
+
+   Generated rather than hand-written so every page carries it consistently:
+     - every page   → WebPage + BreadcrumbList (inner pages only)
+     - home page    → Organization + WebSite
+     - any page     → anything in its front-matter "schema" array
+
+   Google reads this to build rich results and to understand the business.
+   It is not a ranking trick, but missing it leaves visible SERP features on
+   the table (sitelinks search box, breadcrumbs, FAQ expansion).
+   -------------------------------------------------------------------------- */
+
+const SITE = 'https://veritrace.in';
+const ORG = 'VeriTrace AI Technologies Private Limited';
+
+function pageLabel(meta, slug) {
+  // "Platform Features | VeriTrace AI" -> "Platform Features"
+  const t = (meta.title || '').split('|')[0].trim();
+  if (t) return t;
+  return slug.replace(/-/g, ' ').replace(/\b\w/g, function (c) { return c.toUpperCase(); });
+}
+
+function buildSchema(meta, slug) {
+  const canonical = meta.canonical || SITE + '/';
+  const isHome = slug === 'index';
+  const blocks = [];
+
+  if (isHome) {
+    blocks.push({
+      '@context': 'https://schema.org',
+      '@type': 'Organization',
+      name: 'VeriTrace AI',
+      legalName: ORG,
+      url: SITE + '/',
+      logo: {
+        '@type': 'ImageObject',
+        url: SITE + '/assets/img/logo-mark.svg'
+      },
+      image: SITE + '/assets/img/og-cover.png',
+      description: 'AI-powered product authentication, serialization and supply-chain traceability platform for Indian enterprises and MSMEs.',
+      slogan: 'Verify every product. Trace every journey.',
+      foundingDate: '2023',
+      areaServed: { '@type': 'Country', name: 'India' },
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: 'Kandi',
+        addressLocality: 'Sangareddy',
+        addressRegion: 'Telangana',
+        postalCode: '502284',
+        addressCountry: 'IN'
+      },
+      contactPoint: [{
+        '@type': 'ContactPoint',
+        contactType: 'sales',
+        email: 'veritrace.ai@gmail.com',
+        telephone: '+91-99876-26499',
+        areaServed: 'IN',
+        availableLanguage: ['en', 'hi', 'mr', 'ta', 'te']
+      }],
+      knowsAbout: [
+        'Product serialization', 'Supply chain traceability', 'Anti-counterfeiting',
+        'GS1 standards', 'QR code authentication', 'Pharmaceutical serialization',
+        'FSSAI traceability', 'DPDP compliance'
+      ]
+    });
+
+    blocks.push({
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      name: 'VeriTrace AI',
+      url: SITE + '/',
+      inLanguage: 'en-IN',
+      publisher: { '@type': 'Organization', name: 'VeriTrace AI' }
+    });
+  }
+
+  blocks.push({
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: pageLabel(meta, slug),
+    description: meta.desc || '',
+    url: canonical,
+    inLanguage: 'en-IN',
+    isPartOf: { '@type': 'WebSite', name: 'VeriTrace AI', url: SITE + '/' },
+    publisher: { '@type': 'Organization', name: 'VeriTrace AI', url: SITE + '/' }
+  });
+
+  if (!isHome) {
+    blocks.push({
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: SITE + '/' },
+        { '@type': 'ListItem', position: 2, name: pageLabel(meta, slug), item: canonical }
+      ]
+    });
+  }
+
+  // Anything the page supplies itself (FAQPage, Service, ...)
+  if (meta.schema) {
+    const extra = Array.isArray(meta.schema) ? meta.schema : [meta.schema];
+    extra.forEach(function (s) {
+      if (!s['@context']) s['@context'] = 'https://schema.org';
+      blocks.push(s);
+    });
+  }
+
+  return blocks.map(function (b) {
+    return '<script type="application/ld+json">\n' + JSON.stringify(b, null, 2) + '\n</script>';
+  }).join('\n');
 }
 
 /**
@@ -121,6 +235,10 @@ function build() {
   sources.forEach(function (file) {
     const raw = fs.readFileSync(path.join(PAGES_DIR, file), 'utf8');
     const parsed = parseFrontMatter(raw);
+    const slug = file.replace(/\.html$/, '');
+
+    // Structured data is composed here, then injected via {{SCHEMA}}.
+    parsed.meta.__schema = buildSchema(parsed.meta, slug);
 
     const page = [
       fill(head, parsed.meta),

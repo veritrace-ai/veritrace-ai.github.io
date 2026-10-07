@@ -9,7 +9,7 @@
 <meta name="description" content="The page you were looking for could not be found. Explore the VeriTrace AI platform, verify a product, or get in touch with our team.">
 <meta name="keywords" content="product authentication, traceability, serialization, QR codes, India">
 <meta name="robots" content="noindex, follow">
-<meta name="theme-color" content="#0A2540">
+<meta name="theme-color" content="#1B5FD9">
 <meta name="author" content="VeriTrace AI Technologies Private Limited">
 <link rel="canonical" href="https://veritrace.in/404">
 
@@ -73,6 +73,56 @@
     // Keep IPs out of the stored record. Standard practice in India and the EU.
     anonymize_ip: true
   });
+</script>
+
+<!-- ============================================================
+     Structured data (JSON-LD)
+
+     Composed by build.js, not hand-written:
+       - every page gets WebPage + BreadcrumbList
+       - the home page also gets Organization + WebSite
+       - a page can add more via a "schema" array in its front matter
+         (see _pages/contact.html for an FAQPage example)
+     ============================================================ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Page not found",
+  "description": "The page you were looking for could not be found. Explore the VeriTrace AI platform, verify a product, or get in touch with our team.",
+  "url": "https://veritrace.in/404",
+  "inLanguage": "en-IN",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "VeriTrace AI",
+    "url": "https://veritrace.in/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "VeriTrace AI",
+    "url": "https://veritrace.in/"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://veritrace.in/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Page not found",
+      "item": "https://veritrace.in/404"
+    }
+  ]
+}
 </script>
 
 </head>

@@ -1,0 +1,63 @@
+name: Daily SEO health check
+
+# Runs every day and reports whether the site is still indexable and healthy.
+#
+# WHAT THIS DOES NOT DO: it does not improve Google rankings. There is no
+# endpoint that raises search position. Ranking follows from content,
+# backlinks, technical health and time. This job keeps the site findable and
+# catches regressions early — which is the only part automation can own.
+#
+# Google specifically: this submits to IndexNow (Bing, Yandex, Seznam,
+# Naver). Google has no equivalent API and discovers changes through the
+# sitemap plus crawling. Nothing here accelerates Google.
+
+on:
+  schedule:
+    # 02:30 UTC = 08:00 IST, so the report is waiting in the morning.
+    - cron: '30 2 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  seo:
+    name: SEO check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run SEO health check
+        env:
+          SITE_URL: https://veritrace.in
+          # Public by design — it is served at /<key>.txt to prove ownership.
+          INDEXNOW_KEY: d36958952cc799e7202aa8b22ab05811
+          # Optional Search Console reporting. Add these as repository
+          # secrets to enable; the step is skipped safely without them.
+          GSC_SA_EMAIL: ${{ secrets.GSC_SA_EMAIL }}
+          GSC_SA_KEY: ${{ secrets.GSC_SA_KEY }}
+          GSC_SITE: ${{ secrets.GSC_SITE }}
+        run: node scripts/seo-check.mjs
+
+      # Keep the report visible without opening the run log.
+      - name: Write job summary
+        if: always()
+        run: |
+          {
+            echo "## SEO health check"
+            echo ""
+            echo "Run: ${{ github.run_id }} · $(date -u +'%Y-%m-%d %H:%M UTC')"
+            echo ""
+            echo "Checks sitemap reachability, canonicals, meta tags, structured"
+            echo "data, social image, internal links, then submits to IndexNow."
+            echo "Search Console figures appear in the run log when configured."
+            echo ""
+            echo "**Reminder:** this job keeps the site indexable. It does not"
+            echo "raise rankings — that comes from content and backlinks."
+          } >> "$GITHUB_STEP_SUMMARY"

@@ -9,7 +9,7 @@
 <meta name="description" content="{{DESC}}">
 <meta name="keywords" content="{{KEYWORDS}}">
 <meta name="robots" content="{{ROBOTS}}">
-<meta name="theme-color" content="#0A2540">
+<meta name="theme-color" content="#1B5FD9">
 <meta name="author" content="VeriTrace AI Technologies Private Limited">
 <link rel="canonical" href="{{CANONICAL}}">
 
@@ -74,6 +74,17 @@
     anonymize_ip: true
   });
 </script>
+
+<!-- ============================================================
+     Structured data (JSON-LD)
+
+     Composed by build.js, not hand-written:
+       - every page gets WebPage + BreadcrumbList
+       - the home page also gets Organization + WebSite
+       - a page can add more via a "schema" array in its front matter
+         (see _pages/contact.html for an FAQPage example)
+     ============================================================ -->
+{{SCHEMA}}
 {{EXTRA_HEAD}}
 </head>
 <body>

@@ -37,6 +37,21 @@ jobs:
       - name: Build pages from sources
         run: node build.js
 
+      # The meta tags reference og-cover.png but the source asset is an SVG,
+      # and no social platform reads SVG. Rasterise it here so the PNG is
+      # always in step with the SVG and never has to be committed or
+      # hand-exported.
+      - name: Generate the social share image
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq librsvg2-bin
+          mkdir -p assets/img
+          rsvg-convert -w 1200 -h 630 \
+            assets/img/og-cover.svg \
+            -o assets/img/og-cover.png
+          echo "og-cover.png: $(stat -c%s assets/img/og-cover.png) bytes"
+
       - name: Assemble publish directory
         run: |
           set -euo pipefail
@@ -61,10 +76,15 @@ jobs:
           # Static assets
           cp -r assets dist/
 
-          # SEO / PWA files — each optional, so guard with `if` rather than
+          # SEO / PWA files. Each optional, so guard with `if` rather than
           # `[ -f x ] && cp`, which returns a non-zero status when the file is
           # absent and would abort the step under `set -e`.
-          for f in sitemap.xml robots.txt site.webmanifest; do
+          for f in sitemap.xml site.webmanifest; do
+            if [ -f "$f" ]; then cp "$f" dist/; fi
+          done
+          # robots.txt plus the IndexNow key file, which must live at the
+          # domain root for search engines to verify ownership.
+          for f in ./*.txt; do
             if [ -f "$f" ]; then cp "$f" dist/; fi
           done
 
