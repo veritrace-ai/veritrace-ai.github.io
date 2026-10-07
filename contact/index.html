@@ -31,7 +31,49 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/assets/css/main.css">
+
+<!-- ============================================================
+     Google Analytics 4 (gtag.js)
+
+     Loaded on every page via this partial. To disable analytics
+     entirely for a preview build, remove the three blocks below.
+
+     PRIVACY: GA collects IP addresses, device details and page
+     views, and sets first-party cookies. Under India's DPDP Act
+     and the EU GDPR this is non-essential processing and needs
+     consent. The privacy notice at /privacy/ discloses it.
+
+     If you add a cookie banner later, uncomment the consent-mode
+     block below and set 'analytics_storage' from the visitor's
+     choice before this script runs — that keeps GA compliant
+     without changing anything else here.
+     ============================================================ -->
+<!--
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    wait_for_update: 500
+  });
+</script>
+-->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MQSDJNY2PG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-MQSDJNY2PG', {
+    // Keep IPs out of the stored record. Standard practice in India and the EU.
+    anonymize_ip: true
+  });
+</script>
 
 </head>
 <body>
@@ -312,6 +354,70 @@
     </div>
   </div>
 </section>
+
+  <!-- ==========================================================
+       FAQ  (moved here from the home page)
+       ========================================================== -->
+  <section class="section" id="faq">
+    <div class="container">
+      <div class="grid grid--sidebar">
+        <div>
+          <span class="eyebrow" data-reveal>Questions</span>
+          <h2 class="h2 mt-4" data-split="lines">Answers before you ask.</h2>
+          <p class="lead mt-5" data-reveal data-delay=".1">
+            Still unsure about something? Our team will walk your line with you.
+          </p>
+          <div class="mt-6" data-reveal>
+            <a class="btn btn--ghost" href="mailto:veritrace.ai@gmail.com"><span class="btn__label">Email an engineer</span><svg><use href="#i-mail"/></svg></a>
+          </div>
+          <div class="ci mt-7">
+            <div class="ci__item">
+              <span class="ci__ico"><svg><use href="#i-phone"/></svg></span>
+              <div>
+                <div class="ci__label">Prefer to talk?</div>
+                <div class="ci__val"><a class="link-u" href="tel:+919987626499">+91 99876 26499</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="acc" data-acc>
+          <div class="acc__item is-open">
+            <button class="acc__q" type="button">How long does a typical deployment take?<span class="acc__ico" aria-hidden="true"></span></button>
+            <div class="acc__a"><div class="acc__a-inner">A single-line pilot goes live in 5&ndash;10 working days, including printer integration and operator training. Multi-plant rollouts typically run 6&ndash;10 weeks depending on the number of lines and ERP systems involved.</div></div>
+          </div>
+          <div class="acc__item">
+            <button class="acc__q" type="button">Do we need to replace our existing printers and cameras?<span class="acc__ico" aria-hidden="true"></span></button>
+            <div class="acc__a"><div class="acc__a-inner">Almost never. We integrate with TTO, laser, inkjet and label applicators from the major OEMs, and with most vision systems already on your line. Where hardware does need changing, we specify the minimum viable upgrade.</div></div>
+          </div>
+          <div class="acc__item">
+            <button class="acc__q" type="button">What happens if an operator forgets to sync, or a plant system crashes?<span class="acc__ico" aria-hidden="true"></span></button>
+            <div class="acc__a"><div class="acc__a-inner">If a shift ends without a sync, an AI agent completes the pending batch to the central platform and logs exactly what it reconciled. Every plant is continuously backed up centrally, so if a system fails we restore it from the last verified state and replay offline scans &mdash; typically within minutes, without reprinting codes.</div></div>
+          </div>
+          <div class="acc__item">
+            <button class="acc__q" type="button">Can we run multiple plants from one account?<span class="acc__ico" aria-hidden="true"></span></button>
+            <div class="acc__a"><div class="acc__a-inner">Yes &mdash; that is the central console. One login covers every plant, line and warehouse, with role-based access per site. You allocate code volumes and SKU schemas per plant, and see live line status across all sites on one screen.</div></div>
+          </div>
+          <div class="acc__item">
+            <button class="acc__q" type="button">Where is our data stored, and is it DPDP compliant?<span class="acc__ico" aria-hidden="true"></span></button>
+            <div class="acc__a"><div class="acc__a-inner">All data is stored in Indian data centres by default, with consent capture and purpose limitation built into the consumer flows. We provide DPDP-aligned data processing agreements, audit logs and data-subject request tooling.</div></div>
+          </div>
+          <div class="acc__item">
+            <button class="acc__q" type="button">What happens if a code is cloned?<span class="acc__ico" aria-hidden="true"></span></button>
+            <div class="acc__a"><div class="acc__a-inner">Every code carries a cryptographic signature that cannot be regenerated without the issuing key. Duplicate or impossible-path scans are flagged as suspected clones, and you can freeze a batch&rsquo;s child codes instantly from the console.</div></div>
+          </div>
+          <div class="acc__item">
+            <button class="acc__q" type="button">Can it work with our ERP and distributors&rsquo; systems?<span class="acc__ico" aria-hidden="true"></span></button>
+            <div class="acc__a"><div class="acc__a-inner">Yes. We provide REST APIs, webhooks, SFTP batch exchange and pre-built connectors for SAP, Oracle, Tally and Zoho. Distributors can use a zero-install web scanner or the mobile app.</div></div>
+          </div>
+          <div class="acc__item">
+            <button class="acc__q" type="button">What does a pilot cost?<span class="acc__ico" aria-hidden="true"></span></button>
+            <div class="acc__a"><div class="acc__a-inner">The pilot itself is free for one production line. You cover only the consumables you would print anyway. At the end of the pilot you get a written report with rejection rates, scan coverage and a go/no-go recommendation.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </main>
 
 <footer class="footer">

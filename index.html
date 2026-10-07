@@ -31,7 +31,49 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/assets/css/main.css">
+
+<!-- ============================================================
+     Google Analytics 4 (gtag.js)
+
+     Loaded on every page via this partial. To disable analytics
+     entirely for a preview build, remove the three blocks below.
+
+     PRIVACY: GA collects IP addresses, device details and page
+     views, and sets first-party cookies. Under India's DPDP Act
+     and the EU GDPR this is non-essential processing and needs
+     consent. The privacy notice at /privacy/ discloses it.
+
+     If you add a cookie banner later, uncomment the consent-mode
+     block below and set 'analytics_storage' from the visitor's
+     choice before this script runs — that keeps GA compliant
+     without changing anything else here.
+     ============================================================ -->
+<!--
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    wait_for_update: 500
+  });
+</script>
+-->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MQSDJNY2PG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-MQSDJNY2PG', {
+    // Keep IPs out of the stored record. Standard practice in India and the EU.
+    anonymize_ip: true
+  });
+</script>
 
 </head>
 <body>
@@ -240,14 +282,14 @@
   <!-- ==========================================================
        CAPABILITIES
        ========================================================== -->
-  <section class="section" id="capabilities">
+    <section class="section" id="capabilities">
     <div class="container">
       <div class="section__head section__head--center">
         <span class="eyebrow eyebrow--center" data-reveal>Why VeriTrace AI</span>
         <h2 class="h2" data-split="lines">Six capabilities. One trust layer.</h2>
         <p class="lead" data-reveal data-delay="0.1">
-          From the first print head to the final consumer scan, VeriTrace AI gives you a single,
-          verifiable record of every product you make.
+          From the first print head to the final consumer scan — and every backup, sync and
+          recovery in between — VeriTrace AI keeps one verifiable record of every product you make.
         </p>
       </div>
 
@@ -255,43 +297,43 @@
         <article class="card spotlight">
           <span class="card__num">01</span>
           <div class="card__icon"><svg><use href="#i-shield"/></svg></div>
-          <h3>Authenticity</h3>
-          <p>Encrypted, tamper-evident codes that are practically impossible to clone. Every scan is validated server-side in milliseconds — grey-market and counterfeit units are flagged instantly.</p>
+          <h3>Anti-counterfeit identity</h3>
+          <p>Every unit carries a cryptographically signed identity. Copying the label artwork is easy — forging the signature is not. Duplicate and impossible-path scans are flagged in milliseconds.</p>
         </article>
 
         <article class="card spotlight card--teal">
           <span class="card__num">02</span>
-          <div class="card__icon"><svg><use href="#i-route"/></svg></div>
-          <h3>Traceability</h3>
-          <p>Real-time product journey from production line to end consumer. Parent-child aggregation tracks cartons and pallets, so you always know what was shipped where, and when.</p>
+          <div class="card__icon"><svg><use href="#i-layers"/></svg></div>
+          <h3>Traceability &amp; aggregation</h3>
+          <p>Unit to carton to pallet to shipment. One scan at dispatch reconciles thousands of child codes against an audit trail that holds up under scrutiny.</p>
         </article>
 
         <article class="card spotlight">
           <span class="card__num">03</span>
-          <div class="card__icon"><svg><use href="#i-file"/></svg></div>
-          <h3>Compliance</h3>
-          <p>Serialization and audit-ready trails for regulated industries — pharma, FSSAI, DGFT export barcoding and GST-linked invoicing, with exportable evidence packs.</p>
-        </article>
-
-        <article class="card spotlight">
-          <span class="card__num">04</span>
-          <div class="card__icon"><svg><use href="#i-gift"/></svg></div>
-          <h3>Engagement</h3>
-          <p>Rewards, loyalty, referrals and feedback captured at the moment of truth — the consumer scan. Turn a verification into a repeat purchase.</p>
+          <div class="card__icon"><svg><use href="#i-globe"/></svg></div>
+          <h3>Central multi-plant control</h3>
+          <p>One login for every plant, line and warehouse. Allocate code volumes per site, change roles in a click, and watch every floor on a single screen.</p>
         </article>
 
         <article class="card spotlight card--teal">
-          <span class="card__num">05</span>
+          <span class="card__num">04</span>
           <div class="card__icon"><svg><use href="#i-spark"/></svg></div>
-          <h3>Intelligence</h3>
-          <p>AI analytics, anomaly detection and conversational assistants for operators, warehouse staff and consumers — insights in plain language, not dashboards nobody reads.</p>
+          <h3>AI intelligence layer</h3>
+          <p>A digital twin per unit, a copilot that answers in plain language, predictive recall simulation and live anomaly detection — insight your team acts on, not dashboards nobody reads.</p>
+        </article>
+
+        <article class="card spotlight">
+          <span class="card__num">05</span>
+          <div class="card__icon"><svg><use href="#i-gift"/></svg></div>
+          <h3>Consumer engagement</h3>
+          <p>Rewards, cashback, warranty registration and feedback captured at the moment of truth — the scan. Turn a verification into a repeat purchase.</p>
         </article>
 
         <article class="card spotlight">
           <span class="card__num">06</span>
           <div class="card__icon"><svg><use href="#i-pin"/></svg></div>
           <h3>Made for India</h3>
-          <p>INR pricing, GST invoicing, regional language interfaces, DPDP-compliant consent and India data residency. Built for the way Indian supply chains actually run.</p>
+          <p>INR pricing, GST invoicing, regional-language interfaces, DPDP-compliant consent and India data residency — with audit-ready compliance templates built in.</p>
         </article>
       </div>
     </div>
@@ -472,45 +514,6 @@
         </div>
       </div>
 
-      <!-- Row 3 -->
-      <div class="frow">
-        <div class="frow__copy">
-          <span class="badge" data-reveal>Intelligence</span>
-          <h3 class="h3 mt-5" data-split="lines">Analytics that tell you what to do next.</h3>
-          <p class="lead mt-4" data-reveal>
-            VeriTrace AI watches every scan stream for anomalies — diversion, bulk scans in one
-            location, unexpected geographies, sudden return spikes — and surfaces them as plain-language
-            actions for your team.
-          </p>
-          <div class="frow__list" data-stagger=".check" data-stagger-amount="0.08">
-            <div class="check"><span class="check__ico"><svg><use href="#i-check"/></svg></span><span>Diversion and grey-market heatmaps by pin code</span></div>
-            <div class="check"><span class="check__ico"><svg><use href="#i-check"/></svg></span><span>Demand forecasting from real scan velocity</span></div>
-            <div class="check"><span class="check__ico"><svg><use href="#i-check"/></svg></span><span>Document assistant for audits, filings and tenders</span></div>
-          </div>
-          <div class="mt-6" data-reveal data-delay=".1">
-            <a class="btn btn--link" href="/features/"><span class="btn__label">Explore the full platform</span><svg class="btn__arrow"><use href="#i-arrow"/></svg></a>
-          </div>
-        </div>
-        <div class="frow__media" data-reveal data-reveal-y="50">
-          <div class="panel" data-tilt="5">
-            <div class="panel__glow" style="background:rgba(255,153,51,.2)" aria-hidden="true"></div>
-            <div class="mini" style="margin-inline:auto">
-              <div class="mini__bar"><span class="mini__dot"></span><span class="mini__dot"></span><span class="mini__dot"></span><span class="mini__title">Anomaly Radar</span></div>
-              <div class="mini__body">
-                <div class="mini__row">
-                  <span class="mini__k">SIGNAL</span>
-                  <span class="mini__pill" style="background:rgba(224,49,49,.14);border-color:rgba(224,49,49,.34);color:#ff8787">High</span>
-                </div>
-                <div style="font-size:.82rem;color:var(--tx-mid);line-height:1.5">412 scans of batch B-2026-0142 from a single pin code in 6 minutes — consistent with bulk diversion.</div>
-                <div class="mini__track"><span class="mini__fill" style="width:68%;background:linear-gradient(90deg,#F59F00,#E03131)"></span></div>
-                <div class="mini__row"><span class="mini__k">RECOMMENDED</span><span class="mini__v">Freeze child codes</span></div>
-                <div class="mini__row"><span class="mini__k">OWNER</span><span class="mini__v">West Zone QA</span></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
     </div>
   </section>
 
@@ -545,104 +548,47 @@
   </section>
 
   <!-- ==========================================================
-       JOURNEY — SCROLLYTELLING
+       CENTRAL COMMAND
        ========================================================== -->
-  <section class="section section--raised" id="journey">
+  <section class="section section--alt" id="central">
     <div class="container">
-      <div class="section__head section__head--center">
-        <span class="eyebrow eyebrow--center" data-reveal>One code, the whole journey</span>
-        <h2 class="h2" data-split="lines">Follow a single unit from press to purchase.</h2>
-      </div>
-
-      <div class="scrolly" data-scrolly>
-        <div class="scrolly__sticky">
-          <div class="scrolly__stage">
-            <div class="scrolly__layer">
-              <div class="mini">
-                <div class="mini__bar"><span class="mini__dot"></span><span class="mini__dot"></span><span class="mini__dot"></span><span class="mini__title">01 · Production</span></div>
-                <div class="mini__body">
-                  <div class="mini__row"><span class="mini__k">LINE</span><span class="mini__v">Filling Line 02</span></div>
-                  <div class="mini__row"><span class="mini__k">UID</span><span class="mini__v mono">VT-2291-8F3A-0043</span></div>
-                  <div class="mini__row"><span class="mini__k">STATUS</span><span class="mini__pill">Serialized</span></div>
-                  <div class="mini__track"><span class="mini__fill" style="width:100%"></span></div>
-                </div>
-              </div>
-            </div>
-            <div class="scrolly__layer">
-              <div class="mini">
-                <div class="mini__bar"><span class="mini__dot"></span><span class="mini__dot"></span><span class="mini__dot"></span><span class="mini__title">02 · Aggregation</span></div>
-                <div class="mini__body">
-                  <div class="mini__row"><span class="mini__k">CARTON</span><span class="mini__v mono">CTN-0417</span></div>
-                  <div class="mini__row"><span class="mini__k">CHILDREN</span><span class="mini__v">24 units</span></div>
-                  <div class="mini__row"><span class="mini__k">PALLET</span><span class="mini__v mono">PLT-88</span></div>
-                  <div class="mini__row"><span class="mini__k">LINK</span><span class="mini__pill">Verified</span></div>
-                </div>
-              </div>
-            </div>
-            <div class="scrolly__layer">
-              <div class="mini">
-                <div class="mini__bar"><span class="mini__dot"></span><span class="mini__dot"></span><span class="mini__dot"></span><span class="mini__title">03 · Dispatch</span></div>
-                <div class="mini__body">
-                  <div class="mini__row"><span class="mini__k">FROM</span><span class="mini__v">Ahmedabad DC</span></div>
-                  <div class="mini__row"><span class="mini__k">TO</span><span class="mini__v">Pune Hub</span></div>
-                  <div class="mini__row"><span class="mini__k">EWAY BILL</span><span class="mini__v mono">7124 8891 3302</span></div>
-                  <div class="mini__row"><span class="mini__k">GATE SCAN</span><span class="mini__pill">04:12 IST</span></div>
-                </div>
-              </div>
-            </div>
-            <div class="scrolly__layer">
-              <div class="mini">
-                <div class="mini__bar"><span class="mini__dot"></span><span class="mini__dot"></span><span class="mini__dot"></span><span class="mini__title">04 · Retail shelf</span></div>
-                <div class="mini__body">
-                  <div class="mini__row"><span class="mini__k">OUTLET</span><span class="mini__v">Kothrud, Pune</span></div>
-                  <div class="mini__row"><span class="mini__k">RECEIVED</span><span class="mini__v">18 Aug 2026</span></div>
-                  <div class="mini__row"><span class="mini__k">STOCK AGE</span><span class="mini__v">6 days</span></div>
-                  <div class="mini__row"><span class="mini__k">STATE</span><span class="mini__pill">On shelf</span></div>
-                </div>
-              </div>
-            </div>
-            <div class="scrolly__layer">
-              <div class="mini">
-                <div class="mini__bar"><span class="mini__dot"></span><span class="mini__dot"></span><span class="mini__dot"></span><span class="mini__title">05 · Consumer scan</span></div>
-                <div class="mini__body">
-                  <div style="display:flex;align-items:center;gap:.6rem">
-                    <span class="dot"></span>
-                    <div style="font-family:var(--ff-display);font-weight:700;color:#fff;font-size:.9rem">Genuine — thank you</div>
-                  </div>
-                  <div class="mini__row"><span class="mini__k">SCANNED AT</span><span class="mini__v">24 Aug 2026, 19:41</span></div>
-                  <div class="mini__row"><span class="mini__k">REWARD</span><span class="mini__v">₹50 cashback issued</span></div>
-                  <div class="mini__row"><span class="mini__k">FEEDBACK</span><span class="mini__v">4.6 / 5</span></div>
-                </div>
-              </div>
-            </div>
+      <div class="frow">
+        <div class="frow__copy">
+          <span class="badge badge--cyan" data-reveal>Central command</span>
+          <h2 class="h2 mt-5" data-split="lines">One login. Every plant. Complete control.</h2>
+          <p class="lead mt-4" data-reveal>
+            The central console is where the whole operation comes together — every plant, every
+            line, every warehouse, every allocation. No per-site logins, no spreadsheets stitched
+            together at month end, no guessing which site is behind.
+          </p>
+          <div class="frow__list" data-stagger=".check" data-stagger-amount="0.07">
+            <div class="check"><span class="check__ico"><svg><use href="#i-check"/></svg></span><span>Single sign-on across every plant, with role-based access per site and per line</span></div>
+            <div class="check"><span class="check__ico"><svg><use href="#i-check"/></svg></span><span>Allocate code volumes and SKU schemas per plant — reallocate in one click when demand moves</span></div>
+            <div class="check"><span class="check__ico"><svg><use href="#i-check"/></svg></span><span>Live floor view: line status, output rate, rejection rate and print-head health, all sites side by side</span></div>
+            <div class="check"><span class="check__ico"><svg><use href="#i-check"/></svg></span><span>Dispatch, inventory and shipment records that reconcile across plants automatically</span></div>
+            <div class="check"><span class="check__ico"><svg><use href="#i-check"/></svg></span><span>Per-plant and per-line reporting that rolls up into one number you can defend</span></div>
           </div>
         </div>
-
-        <div class="scrolly__steps">
-          <div class="scrolly__step is-active">
-            <span class="eyebrow">01 — Production</span>
-            <h3 class="mt-4">The code is born with the product.</h3>
-            <p>A unique, encrypted identifier is generated and printed at the moment of filling. Nothing is pre-printed, nothing is reused, nothing is guessable.</p>
-          </div>
-          <div class="scrolly__step">
-            <span class="eyebrow">02 — Aggregation</span>
-            <h3 class="mt-4">Every unit knows its parents.</h3>
-            <p>Units are linked to cartons, cartons to pallets. One scan at the pallet level reconciles thousands of child codes — with a verifiable audit trail.</p>
-          </div>
-          <div class="scrolly__step">
-            <span class="eyebrow">03 — Dispatch</span>
-            <h3 class="mt-4">Chain of custody, captured automatically.</h3>
-            <p>Gate scans, e-way bills and GST invoices attach to the shipment. If a consignment is split or diverted, you see it the moment it happens.</p>
-          </div>
-          <div class="scrolly__step">
-            <span class="eyebrow">04 — Retail</span>
-            <h3 class="mt-4">Know what is actually on the shelf.</h3>
-            <p>Stock age, outlet-level availability and movement velocity — the ground truth that distributors' spreadsheets never give you.</p>
-          </div>
-          <div class="scrolly__step">
-            <span class="eyebrow">05 — Consumer</span>
-            <h3 class="mt-4">Trust, rewarded.</h3>
-            <p>The consumer scans, sees the full journey, and is rewarded for checking. You get a verified purchase signal and a direct relationship.</p>
+        <div class="frow__media" data-reveal data-reveal-y="50">
+          <div class="panel" data-tilt="5">
+            <div class="panel__glow" aria-hidden="true"></div>
+            <div class="mini" style="margin-inline:auto">
+              <div class="mini__bar"><span class="mini__dot"></span><span class="mini__dot"></span><span class="mini__dot"></span><span class="mini__title">Central Console &middot; 4 sites</span></div>
+              <div class="mini__body">
+                <div class="mini__row"><span class="mini__k">AHMEDABAD &middot; LINE 04</span><span class="mini__pill">Running</span></div>
+                <div class="mini__track"><span class="mini__fill" style="width:82%"></span></div>
+                <div class="mini__row"><span class="mini__k">PUNE &middot; LINE 02</span><span class="mini__pill">Running</span></div>
+                <div class="mini__track"><span class="mini__fill" style="width:64%"></span></div>
+                <div class="mini__row"><span class="mini__k">RAJKOT &middot; LINE 01</span><span class="mini__pill" style="background:rgba(217,119,6,.12);border-color:rgba(217,119,6,.32);color:#B45309">Syncing</span></div>
+                <div class="mini__track"><span class="mini__fill" style="width:96%"></span></div>
+                <div class="mini__row"><span class="mini__k">CHENNAI &middot; WAREHOUSE 1</span><span class="mini__pill" style="background:var(--vt-mist);border-color:var(--bd-mid);color:var(--tx-lo)">Idle</span></div>
+                <div style="border-top:1px solid var(--bd-soft);padding-top:.75rem">
+                  <div class="mini__k mb-2">MONTHLY ALLOCATION</div>
+                  <div class="mini__row"><span class="mini__v">1.84M / 2.5M codes</span><span class="mini__v">74%</span></div>
+                  <div class="mini__track mt-2"><span class="mini__fill" style="width:74%"></span></div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -650,203 +596,129 @@
   </section>
 
   <!-- ==========================================================
-       INDUSTRIES
+       RESILIENCE — AI SYNC, BACKUP AND RECOVERY
        ========================================================== -->
-  <section class="section" id="industries">
+  <section class="section section--dark" id="resilience">
+    <div class="container">
+      <div class="section__head section__head--center">
+        <span class="eyebrow eyebrow--center" data-reveal>Built to survive</span>
+        <h2 class="h2" data-split="lines">If a line goes dark, the AI finishes the job.</h2>
+        <p class="lead" data-reveal data-delay=".1">
+          Operators forget to sync. Networks drop mid-shift. Disks fail. VeriTrace AI assumes all
+          three will happen and builds around them, so a bad afternoon never becomes a lost batch.
+        </p>
+      </div>
+
+      <div class="grid grid--3" data-stagger=":scope > *" data-stagger-amount="0.08">
+        <article class="card spotlight">
+          <div class="card__icon"><svg><use href="#i-clock"/></svg></div>
+          <h3>Auto-sync when the operator misses it</h3>
+          <p>If a shift ends without a sync, an AI agent picks up the pending batch and completes it to the central platform — with a timestamped record of exactly what it reconciled, and what it could not.</p>
+        </article>
+
+        <article class="card spotlight card--teal">
+          <div class="card__icon"><svg><use href="#i-lock"/></svg></div>
+          <h3>AI-run backups to central</h3>
+          <p>Each plant&rsquo;s code pool, scan log and aggregation tree is continuously replicated to the central platform. No manual export, no overnight job to forget, no single disk holding your only copy.</p>
+        </article>
+
+        <article class="card spotlight">
+          <div class="card__icon"><svg><use href="#i-bolt"/></svg></div>
+          <h3>Crash recovery, not start-over</h3>
+          <p>If a plant system fails, the console restores it from the last verified state and replays every offline scan. Production resumes without reprinting a single code or re-running a batch.</p>
+        </article>
+      </div>
+
+      <div class="stats mt-8" data-stagger=".stat" data-stagger-amount="0.1">
+        <div class="stat">
+          <div class="stat__num"><span data-count="0" data-count-num>0</span></div>
+          <div class="stat__lbl">Codes lost to a failed sync</div>
+          <div class="stat__bar"></div>
+        </div>
+        <div class="stat">
+          <div class="stat__num"><span data-count="4" data-count-num>0</span><span class="suffix">min</span></div>
+          <div class="stat__lbl">Median recovery from a plant outage</div>
+          <div class="stat__bar"></div>
+        </div>
+        <div class="stat">
+          <div class="stat__num"><span data-count="100" data-count-num>0</span><span class="suffix">%</span></div>
+          <div class="stat__lbl">Offline scans captured and replayed</div>
+          <div class="stat__bar"></div>
+        </div>
+        <div class="stat">
+          <div class="stat__num">24<span class="suffix">&times;7</span></div>
+          <div class="stat__lbl">System-level support on every plan</div>
+          <div class="stat__bar"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       AI INTELLIGENCE LAYER
+       ========================================================== -->
+  <section class="section" id="ai">
     <div class="container">
       <div class="section__head">
-        <span class="eyebrow" data-reveal>Industries</span>
-        <h2 class="h2" data-split="lines">Configured for the rules of your sector.</h2>
+        <span class="eyebrow" data-reveal>Intelligence layer</span>
+        <h2 class="h2" data-split="lines">Most traceability tools store events. Ours reads them.</h2>
         <p class="lead mt-4" data-reveal data-delay=".1">
-          Each deployment ships with the schemas, reports and compliance templates your
-          industry regulator expects.
+          Serialization is table stakes. What separates VeriTrace AI is what happens to the data
+          afterwards — the models that watch the stream, predict what comes next, and tell your
+          team what to do about it.
         </p>
       </div>
 
-      <div class="grid grid--3" data-stagger=":scope > *" data-stagger-amount="0.06">
-        <a class="ind spotlight" href="/solutions/#pharma">
-          <span class="ind__arrow"><svg><use href="#i-arrow-ur"/></svg></span>
-          <div><span class="ind__idx">01</span></div>
-          <div><h3>Pharmaceuticals</h3><p>Batch-level serialization, export-ready packs and audit trails aligned to CDSCO expectations.</p></div>
-        </a>
-        <a class="ind spotlight" href="/solutions/#fmcg">
-          <span class="ind__arrow"><svg><use href="#i-arrow-ur"/></svg></span>
-          <div><span class="ind__idx">02</span></div>
-          <div><h3>FMCG &amp; D2C</h3><p>Rewards-led loyalty, diversion control and first-party consumer data at scale.</p></div>
-        </a>
-        <a class="ind spotlight" href="/solutions/#agri">
-          <span class="ind__arrow"><svg><use href="#i-arrow-ur"/></svg></span>
-          <div><span class="ind__idx">03</span></div>
-          <div><h3>Agri-inputs &amp; seeds</h3><p>Spurious-input detection for seeds, fertiliser and crop protection across dealer networks.</p></div>
-        </a>
-        <a class="ind spotlight" href="/solutions/#auto">
-          <span class="ind__arrow"><svg><use href="#i-arrow-ur"/></svg></span>
-          <div><span class="ind__idx">04</span></div>
-          <div><h3>Automotive &amp; industrial</h3><p>Genuine-parts verification, warranty validation and service-parts traceability.</p></div>
-        </a>
-        <a class="ind spotlight" href="/solutions/#food">
-          <span class="ind__arrow"><svg><use href="#i-arrow-ur"/></svg></span>
-          <div><span class="ind__idx">05</span></div>
-          <div><h3>Food &amp; beverages</h3><p>FSSAI-aligned traceability, cold-chain visibility and consumer quality feedback.</p></div>
-        </a>
-        <a class="ind spotlight" href="/solutions/#export">
-          <span class="ind__arrow"><svg><use href="#i-arrow-ur"/></svg></span>
-          <div><span class="ind__idx">06</span></div>
-          <div><h3>Export &amp; global trade</h3><p>DGFT barcoding, multi-market labelling and from-factory-to-consumer proof of origin.</p></div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==========================================================
-       TESTIMONIALS
-       ========================================================== -->
-  <section class="section section--alt" id="customers">
-    <div class="container">
-      <div class="section__head section__head--center">
-        <span class="eyebrow eyebrow--center" data-reveal>Customer outcomes</span>
-        <h2 class="h2" data-split="lines">Trust that shows up on the balance sheet.</h2>
-      </div>
-
-      <div class="grid grid--3" data-stagger=":scope > *" data-stagger-amount="0.09">
-        <figure class="quote">
-          <div class="quote__mark" aria-hidden="true">&ldquo;</div>
-          <blockquote class="quote__text">We cut counterfeit complaints by more than two-thirds in the first two quarters. What surprised us was the secondary effect — the scan data finally told us where our product actually sells.</blockquote>
-          <figcaption class="quote__who">
-            <span class="quote__av">RK</span>
-            <span><span class="quote__name">Rajesh Kulkarni</span><br><span class="quote__role">Head of Supply Chain, FMCG manufacturer</span></span>
-          </figcaption>
-        </figure>
-        <figure class="quote">
-          <div class="quote__mark" aria-hidden="true">&ldquo;</div>
-          <blockquote class="quote__text">Our line operators picked it up in a single shift. The assistant answers in Marathi, which matters more than any dashboard we've ever been sold.</blockquote>
-          <figcaption class="quote__who">
-            <span class="quote__av">SM</span>
-            <span><span class="quote__name">Sunita More</span><br><span class="quote__role">Plant Manager, Agri-inputs</span></span>
-          </figcaption>
-        </figure>
-        <figure class="quote">
-          <div class="quote__mark" aria-hidden="true">&ldquo;</div>
-          <blockquote class="quote__text">Audit preparation used to take three weeks of chasing spreadsheets. The evidence pack now exports in an afternoon, and the trail is defensible.</blockquote>
-          <figcaption class="quote__who">
-            <span class="quote__av">AN</span>
-            <span><span class="quote__name">Dr. Anjali Nair</span><br><span class="quote__role">Head of QA, Pharmaceuticals</span></span>
-          </figcaption>
-        </figure>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==========================================================
-       PRICING PREVIEW
-       ========================================================== -->
-  <section class="section" id="pricing">
-    <div class="container">
-      <div class="section__head section__head--center">
-        <span class="eyebrow eyebrow--center" data-reveal>Pricing</span>
-        <h2 class="h2" data-split="lines">Pay for what you serialize. Nothing else.</h2>
-        <p class="lead" data-reveal data-delay=".1">
-          Transparent INR pricing with GST invoicing. No per-seat licence traps, no implementation
-          fee on the starter plan.
-        </p>
-      </div>
-
-      <div class="price-grid" data-stagger=":scope > *" data-stagger-amount="0.1">
-        <article class="price">
-          <div>
-            <div class="price__name">VeriTrace Cloud</div>
-            <p class="price__desc mt-2">For MSMEs and D2C brands getting started with serialization.</p>
-          </div>
-          <div class="price__amt">
-            <span class="cur">₹</span><span class="val">4,999</span><span class="per">/ month</span>
-          </div>
-          <div class="price__feats">
-            <div class="check"><span class="check__ico"><svg><use href="#i-check"/></svg></span><span>Up to 100,000 codes per month</span></div>
-            <div class="check"><span class="check__ico"><svg><use href="#i-check"/></svg></span><span>Consumer verify page &amp; rewards</span></div>
-            <div class="check"><span class="check__ico"><svg><use href="#i-check"/></svg></span><span>Email &amp; chat support</span></div>
-          </div>
-          <a class="btn btn--ghost btn--block" href="/pricing/">See plan details</a>
+      <div class="grid grid--3" data-stagger=":scope > *" data-stagger-amount="0.07">
+        <article class="card spotlight">
+          <span class="card__num">01</span>
+          <div class="card__icon"><svg><use href="#i-box"/></svg></div>
+          <h3>A digital twin for every unit</h3>
+          <p>Not just a code — a living record holding that unit&rsquo;s batch, journey, scan history and condition. Trace a complaint back to the exact pallet, line and shift in one query.</p>
         </article>
 
-        <article class="price price--featured">
-          <span class="price__tag">Most popular</span>
-          <div>
-            <div class="price__name">VeriTrace Platform</div>
-            <p class="price__desc mt-2">For manufacturers running multiple lines, plants and channels.</p>
-          </div>
-          <div class="price__amt">
-            <span class="cur">₹</span><span class="val">24,999</span><span class="per">/ month</span>
-          </div>
-          <div class="price__feats">
-            <div class="check"><span class="check__ico"><svg><use href="#i-check"/></svg></span><span>Up to 2.5M codes per month</span></div>
-            <div class="check"><span class="check__ico"><svg><use href="#i-check"/></svg></span><span>Aggregation, dispatch &amp; warehouse modules</span></div>
-            <div class="check"><span class="check__ico"><svg><use href="#i-check"/></svg></span><span>AI operator &amp; document assistants</span></div>
-            <div class="check"><span class="check__ico"><svg><use href="#i-check"/></svg></span><span>Anomaly detection &amp; analytics</span></div>
-          </div>
-          <a class="btn btn--primary btn--block" href="/contact/" data-magnetic="0.15"><span class="btn__label">Book a walkthrough</span></a>
+        <article class="card spotlight card--teal">
+          <span class="card__num">02</span>
+          <div class="card__icon"><svg><use href="#i-chat"/></svg></div>
+          <h3>A copilot that speaks your language</h3>
+          <p>Ask &ldquo;which batches are at diversion risk this week?&rdquo; and get a straight answer with the evidence behind it — in English, Hindi, Marathi, Tamil or Telugu.</p>
         </article>
 
-        <article class="price">
-          <div>
-            <div class="price__name">Enterprise</div>
-            <p class="price__desc mt-2">For regulated, multi-country and high-volume operations.</p>
-          </div>
-          <div class="price__amt">
-            <span class="val" style="font-size:clamp(1.6rem,3vw,2.1rem)">Custom</span>
-          </div>
-          <div class="price__feats">
-            <div class="check"><span class="check__ico"><svg><use href="#i-check"/></svg></span><span>Unlimited serialization volume</span></div>
-            <div class="check"><span class="check__ico"><svg><use href="#i-check"/></svg></span><span>On-prem or private cloud deployment</span></div>
-            <div class="check"><span class="check__ico"><svg><use href="#i-check"/></svg></span><span>Dedicated success manager &amp; SLA</span></div>
-          </div>
-          <a class="btn btn--ghost btn--block" href="/contact/">Talk to sales</a>
+        <article class="card spotlight">
+          <span class="card__num">03</span>
+          <div class="card__icon"><svg><use href="#i-route"/></svg></div>
+          <h3>Predictive recall simulation</h3>
+          <p>Model a recall before you commit to one. See which batches, distributors and customers are affected, and how far the impact reaches — in seconds rather than days.</p>
+        </article>
+
+        <article class="card spotlight card--teal">
+          <span class="card__num">04</span>
+          <div class="card__icon"><svg><use href="#i-scan"/></svg></div>
+          <h3>Vision-based print quality</h3>
+          <p>Computer vision grades every printed code on the line, spots print-head drift before rejection rates climb, and stops a bad run at the point of failure — not at the customer.</p>
+        </article>
+
+        <article class="card spotlight">
+          <span class="card__num">05</span>
+          <div class="card__icon"><svg><use href="#i-chart"/></svg></div>
+          <h3>Anomaly and diversion detection</h3>
+          <p>Models watch the scan stream continuously for bulk scans at one pin code, impossible geographies and sudden return spikes — surfacing each as a plain-language action with an owner.</p>
+        </article>
+
+        <article class="card spotlight card--teal">
+          <span class="card__num">06</span>
+          <div class="card__icon"><svg><use href="#i-users"/></svg></div>
+          <h3>Guidance that lands with operators</h3>
+          <p>Rather than burying people in dashboards, the system highlights the one thing that needs attention right now — with the fix, the reason and who to escalate to, on the line and in their language.</p>
         </article>
       </div>
-    </div>
-  </section>
 
-  <!-- ==========================================================
-       FAQ
-       ========================================================== -->
-  <section class="section section--alt" id="faq">
-    <div class="container">
-      <div class="grid grid--sidebar">
-        <div>
-          <span class="eyebrow" data-reveal>Questions</span>
-          <h2 class="h2 mt-4" data-split="lines">Answers before you ask.</h2>
-          <p class="lead mt-5" data-reveal data-delay=".1">
-            Still unsure about something? Our team will walk your line with you.
-          </p>
-          <div class="mt-6" data-reveal>
-            <a class="btn btn--ghost" href="/contact/"><span class="btn__label">Talk to an engineer</span><svg><use href="#i-arrow"/></svg></a>
-          </div>
-        </div>
-
-        <div class="acc" data-acc>
-          <div class="acc__item is-open">
-            <button class="acc__q" type="button">How long does a typical deployment take?<span class="acc__ico" aria-hidden="true"></span></button>
-            <div class="acc__a"><div class="acc__a-inner">A single-line pilot goes live in 5–10 working days, including printer integration and operator training. Multi-plant rollouts typically run 6–10 weeks depending on the number of lines and ERP systems involved.</div></div>
-          </div>
-          <div class="acc__item">
-            <button class="acc__q" type="button">Do we need to replace our existing printers and cameras?<span class="acc__ico" aria-hidden="true"></span></button>
-            <div class="acc__a"><div class="acc__a-inner">Almost never. We integrate with TTO, laser, inkjet and label applicators from the major OEMs, and with most vision systems already on your line. Where hardware does need changing, we specify the minimum viable upgrade.</div></div>
-          </div>
-          <div class="acc__item">
-            <button class="acc__q" type="button">Where is our data stored, and is it DPDP compliant?<span class="acc__ico" aria-hidden="true"></span></button>
-            <div class="acc__a"><div class="acc__a-inner">All data is stored in Indian data centres by default, with consent capture and purpose limitation built into the consumer flows. We provide DPDP-aligned data processing agreements, audit logs and data-subject request tooling.</div></div>
-          </div>
-          <div class="acc__item">
-            <button class="acc__q" type="button">What happens if a code is cloned?<span class="acc__ico" aria-hidden="true"></span></button>
-            <div class="acc__a"><div class="acc__a-inner">Every code carries a cryptographic signature that cannot be regenerated without the issuing key. Duplicate or impossible-path scans are flagged as suspected clones, and you can freeze a batch's child codes instantly from the console.</div></div>
-          </div>
-          <div class="acc__item">
-            <button class="acc__q" type="button">Can it work with our ERP and distributors' systems?<span class="acc__ico" aria-hidden="true"></span></button>
-            <div class="acc__a"><div class="acc__a-inner">Yes. We provide REST APIs, webhooks, SFTP batch exchange and pre-built connectors for SAP, Oracle, Tally and Zoho. Distributors can use a zero-install web scanner or the mobile app.</div></div>
-          </div>
-          <div class="acc__item">
-            <button class="acc__q" type="button">What does a pilot cost?<span class="acc__ico" aria-hidden="true"></span></button>
-            <div class="acc__a"><div class="acc__a-inner">The pilot itself is free for one production line. You cover only the consumables you would print anyway. At the end of the pilot you get a written report with rejection rates, scan coverage and a go/no-go recommendation.</div></div>
-          </div>
+      <div class="grid grid--3 mt-6" data-stagger=":scope > *" data-stagger-amount="0.05">
+        <div class="fblock__aside" style="grid-column:1/-1;flex-direction:row;flex-wrap:wrap;gap:.7rem">
+          <span class="fblock__tag"><svg><use href="#i-lock"/></svg> Tenant-isolated, read-only AI access</span>
+          <span class="fblock__tag"><svg><use href="#i-shield"/></svg> Your data never trains shared models</span>
+          <span class="fblock__tag"><svg><use href="#i-globe"/></svg> Agent access over a standards-based interface</span>
+          <span class="fblock__tag"><svg><use href="#i-file"/></svg> Every AI action logged and auditable</span>
         </div>
       </div>
     </div>

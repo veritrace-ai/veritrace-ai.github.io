@@ -31,7 +31,49 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="stylesheet" href="/assets/css/main.css">
+
+<!-- ============================================================
+     Google Analytics 4 (gtag.js)
+
+     Loaded on every page via this partial. To disable analytics
+     entirely for a preview build, remove the three blocks below.
+
+     PRIVACY: GA collects IP addresses, device details and page
+     views, and sets first-party cookies. Under India's DPDP Act
+     and the EU GDPR this is non-essential processing and needs
+     consent. The privacy notice at /privacy/ discloses it.
+
+     If you add a cookie banner later, uncomment the consent-mode
+     block below and set 'analytics_storage' from the visitor's
+     choice before this script runs — that keeps GA compliant
+     without changing anything else here.
+     ============================================================ -->
+<!--
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    wait_for_update: 500
+  });
+</script>
+-->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MQSDJNY2PG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-MQSDJNY2PG', {
+    // Keep IPs out of the stored record. Standard practice in India and the EU.
+    anonymize_ip: true
+  });
+</script>
 {{EXTRA_HEAD}}
 </head>
 <body>
