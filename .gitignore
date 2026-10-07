@@ -7,6 +7,10 @@ yarn-error.log*
 _test/
 *.local
 
+# ---- Internal notes: strategy, competitive assessment, working method ----
+# See _internal/README.md. Operational docs stay in docs/ and remain public.
+_internal/
+
 # ---- OS / editor cruft ----
 .DS_Store
 Thumbs.db
