@@ -46,12 +46,13 @@ jobs:
           cp ./*.html dist/
 
           # Page folders — each holds an index.html so URLs stay extensionless.
-          # Disable globbing fallback so an empty match doesn't iterate.
+          # `nullglob` prevents an empty match from iterating; `dist` must be
+          # excluded or the loop copies the build directory into itself.
           shopt -s nullglob
           for d in */; do
             name="${d%/}"
             case "$name" in
-              _*|assets|docs|node_modules) continue ;;
+              _*|assets|docs|node_modules|dist) continue ;;
             esac
             cp -r "$d" dist/
           done
