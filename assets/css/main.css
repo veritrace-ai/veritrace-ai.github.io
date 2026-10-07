@@ -1190,10 +1190,54 @@ body.vt-menu-open .drawer { pointer-events: auto; }
 }
 .stat__lbl { font-size: var(--fs-sm); color: var(--tx-lo); }
 .stat__bar { height: 3px; width: 40px; background: var(--grad-accent); border-radius: 3px; margin-top: .7rem; }
-.section--dark .stat { background: rgba(255,255,255,.04); }
-.section--dark .stat:hover { background: rgba(255,255,255,.07); }
+/* Dark sections.
+   The card backgrounds must be OPAQUE here. `.stats` paints a light
+   --bd-soft background that shows through the 1px grid gaps as hairlines,
+   so a translucent card lets that light colour bleed through and inverts
+   the whole block. The container's gap and border need dark hairlines to
+   match. */
+.section--dark .stats {
+  background: var(--white-a16);
+  border-color: var(--white-a12);
+  box-shadow: none;
+}
+.section--dark .stat {
+  background: #0D2C50;
+}
+.section--dark .stat:hover { background: #123A6B; }
 .section--dark .stat__num { color: #fff; }
 .section--dark .stat__lbl { color: var(--tx-on-dark-lo); }
+.section--dark .stat__num .suffix { color: var(--vt-blue-300); }
+
+/* Cards inside dark sections.
+   `.card` is white with dark text for the light theme, but
+   `.section--dark h3` forces headings to #fff — so an unadjusted card
+   renders white-on-white with invisible headings. These overrides give the
+   card a translucent surface and light text instead. */
+.section--dark .card {
+  background: rgba(255, 255, 255, .06);
+  border-color: var(--white-a16);
+  box-shadow: none;
+}
+.section--dark .card:hover {
+  background: rgba(255, 255, 255, .09);
+  border-color: var(--white-a24);
+  box-shadow: 0 10px 30px -12px rgba(0, 0, 0, .45);
+}
+.section--dark .card h3 { color: #fff; }
+.section--dark .card p { color: var(--tx-on-dark-mid); }
+.section--dark .card__icon {
+  background: var(--white-a12);
+  border-color: var(--white-a24);
+  color: var(--vt-blue-300);
+}
+.section--dark .card__num { color: var(--white-a24); }
+.section--dark .check { color: var(--tx-on-dark-mid); }
+.section--dark .check__ico {
+  background: rgba(255, 255, 255, .10);
+  border-color: var(--white-a24);
+  color: #6EE7B7;
+}
 
 /* --------------------------------------------------------------------------
    18. TABS / ACCORDION
