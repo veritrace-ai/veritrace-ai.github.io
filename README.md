@@ -30,30 +30,50 @@ There are **no dependencies**. Node 18+ is the only requirement.
 
 ```
 .
-├── index.html, features.html, …   ← GENERATED. Do not edit these by hand.
-├── _pages/                        ← EDIT THESE. One file per page body.
-├── _partials/                     ← Shared chrome: head, sprite, nav, footer
-├── build.js                       ← Assembles _pages + _partials → root .html
-├── server.js                      ← Zero-dependency local preview server
+├── index.html                    ← GENERATED (from _pages/index.html)
+├── 404.html                      ← GENERATED
+├── features/index.html           ← GENERATED  → served at /features/
+├── solutions/index.html          ← GENERATED  → served at /solutions/
+├── … one folder per page …
+├── _pages/                       ← EDIT THESE. One file per page body.
+├── _partials/                    ← Shared chrome: head, sprite, nav, footer
+├── build.js                      ← Assembles _pages + _partials → output
+├── server.js                     ← Zero-dependency local preview server
 ├── assets/
-│   ├── css/main.css               ← Complete design system (tokens → components)
-│   ├── js/app.js                  ← Declarative GSAP motion engine
-│   ├── js/vendor/                 ← GSAP, ScrollTrigger, SplitText, Lenis (vendored)
-│   └── img/                       ← Logo suite, favicon, pattern, social card
-├── brand/index.html               ← Brand sheet (logo, palette, typography)
-├── _test/harness.html             ← Automated render check across every page
-├── .github/workflows/deploy.yml   ← Build + deploy to GitHub Pages
-└── CNAME                          ← Custom domain
+│   ├── css/main.css              ← Complete design system (tokens → components)
+│   ├── js/app.js                 ← Declarative GSAP motion engine
+│   ├── js/vendor/                ← GSAP, ScrollTrigger, SplitText, Lenis (vendored)
+│   └── img/                      ← Logo suite, favicon, pattern, social card
+├── brand/index.html              ← Brand sheet (logo, palette, typography)
+├── _test/harness.html            ← Automated render check across every page
+├── .github/workflows/deploy.yml  ← Build + deploy to GitHub Pages
+└── CNAME                         ← Custom domain
 ```
+
+### Clean URLs — no `.html` in the address bar
+
+Routes are folder-based. Each page is written to `<slug>/index.html`, which the web
+server resolves to `/slug/`:
+
+| Source | Output | URL |
+|---|---|---|
+| `_pages/index.html` | `index.html` | `/` |
+| `_pages/features.html` | `features/index.html` | `/features/` |
+| `_pages/404.html` | `404.html` | `/404.html` |
+
+`404.html` stays a real root file because GitHub Pages requires that exact path for its
+custom error document.
+
+**All internal links are root-relative** (`/features/`, `/assets/css/main.css`). This keeps
+them correct at any nesting depth — a page at `/features/` linking to `pricing.html` would
+otherwise resolve to `/features/pricing.html`. `build.js` normalises links on every build,
+so hand-edited sources can't silently drift.
 
 ### The golden rule
 
-**Never edit the root `*.html` files.** They are build output. Edit the source in
-`_pages/` (for content) or `_partials/` (for nav, footer, head), then run
-`node build.js`.
-
-`index.html` and `features.html` are the two hand-authored exceptions — they have no
-counterpart in `_pages/`, so they are edited directly.
+**Never edit the generated output.** Edit `_pages/` for content or `_partials/` for shared
+chrome, then run `node build.js`. There are no hand-authored exceptions — every page,
+including the homepage, comes from `_pages/`.
 
 ---
 
@@ -118,6 +138,53 @@ in the markup, so content authors never touch JavaScript.
 - A hard 5-second failsafe removes the preloader and reveals all content if anything stalls.
 - A background-tab guard skips the animated curtain entirely (`requestAnimationFrame` is
   throttled in hidden tabs, which would otherwise leave the screen covered).
+
+---
+
+## Forms and where they send
+
+The site is static — there is no server to receive a submission. Forms post to a hosted
+form provider that forwards to email.
+
+**Currently wired to [Web3Forms](https://web3forms.com)** — free, unlimited submissions, no
+backend, sends straight to your inbox.
+
+### One-time setup (2 minutes)
+
+1. Go to <https://web3forms.com> and enter **`veritrace.ai@gmail.com`**.
+2. Check that inbox for the access key.
+3. Paste it into `_pages/contact.html`, replacing `REPLACE_WITH_WEB3FORMS_ACCESS_KEY`:
+
+```html
+<input type="hidden" name="access_key" value="your-key-here">
+```
+
+4. `node build.js` and push.
+
+Until a real key is in place, the form detects the placeholder and shows
+*"The form is not connected yet"* with your email address — so a misconfiguration is visible
+to visitors rather than silently swallowing enquiries.
+
+### How it behaves
+
+| Situation | What the visitor sees |
+|---|---|
+| No key configured | Amber error with your email address |
+| Key present, submission succeeds | Green success message; form resets |
+| Provider returns an error | Red error with the provider's message |
+| Network failure | Red error with your email address |
+
+`app.js` reads `data-ajax` on the `<form>` and posts via `fetch`. A hidden `botcheck`
+honeypot field catches most spam bots. Forms **without** `action` or `data-ajax` fall back
+to a simulated submit, which is how the demo subscribe forms behave.
+
+### Switching providers
+
+Any provider that accepts a normal `POST` works — change the `action`, keep `data-ajax`, and
+adjust the field names. Formspree, Getform and Basin are drop-in alternatives.
+
+> **Note:** the newsletter forms on `/blog/` and `/status/` are still in demo mode. Point
+> them at a provider the same way, or remove them.
 
 ---
 

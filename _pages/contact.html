@@ -3,14 +3,14 @@
   "title": "Contact VeriTrace AI | Book a Free Pilot or Demo",
   "desc": "Talk to the VeriTrace AI team about serialization and traceability for your production line. Book a free two-week pilot, request a demo, or ask about compliance and integrations.",
   "keywords": "contact VeriTrace AI, book serialization demo India, free traceability pilot, product authentication software demo",
-  "canonical": "https://veritrace.in/contact"
+  "canonical": "https://veritrace.in/contact/"
 }
 @-->
 
 <section class="phero">
   <div class="container">
     <div class="phero__inner">
-      <div class="phero__crumbs"><a href="index.html">Home</a> / <span>Contact</span></div>
+      <div class="phero__crumbs"><a href="/">Home</a> / <span>Contact</span></div>
       <h1 class="h1" data-split="lines">Let's put a pilot on your line.</h1>
       <p class="lead mt-5" data-reveal data-delay=".15">
         Tell us what you manufacture and how many lines you run. A customer engineer — not a
@@ -68,7 +68,23 @@
           <h2 class="h3">Request a pilot or demo</h2>
           <p class="muted small mt-3">Fields marked <span class="text-cyan">*</span> are required.</p>
 
-          <form class="form mt-6" data-form novalidate>
+          <form class="form mt-6"
+                action="https://api.web3forms.com/submit"
+                method="POST"
+                data-form
+                data-ajax
+                novalidate>
+            <!-- Web3Forms: get a free access key at https://web3forms.com
+                 (enter veritrace.ai@gmail.com) and paste it below. Until a real
+                 key is set the form falls back to demo behaviour and tells the
+                 visitor it is not yet connected. -->
+            <input type="hidden" name="access_key" value="REPLACE_WITH_WEB3FORMS_ACCESS_KEY">
+            <input type="hidden" name="subject" value="New website enquiry — VeriTrace AI">
+            <input type="hidden" name="from_name" value="VeriTrace AI website">
+            <input type="hidden" name="redirect" value="false">
+            <!-- Spam honeypot: bots fill this, humans never see it -->
+            <input type="checkbox" name="botcheck" style="display:none !important" tabindex="-1" autocomplete="off">
+
             <div class="form__row">
               <div class="field">
                 <label for="cname">Full name <span class="req">*</span></label>
@@ -124,7 +140,7 @@
 
             <label class="checkbox">
               <input type="checkbox" name="consent" required>
-              <span>I agree to VeriTrace AI contacting me about this enquiry and have read the <a class="link-u" href="privacy.html">privacy notice</a>. <span class="req">*</span></span>
+              <span>I agree to VeriTrace AI contacting me about this enquiry and have read the <a class="link-u" href="/privacy/">privacy notice</a>. <span class="req">*</span></span>
             </label>
 
             <div class="row row--wrap gap-4 mt-2">
@@ -138,6 +154,10 @@
             <div class="form__ok" role="status">
               <svg width="16" height="16"><use href="#i-check"/></svg>
               <span>Thank you — your enquiry is in. A customer engineer will reply within one working day.</span>
+            </div>
+            <div class="form__err" role="alert">
+              <svg width="16" height="16"><use href="#i-shield"/></svg>
+              <span>Something went wrong. Please try again or email veritrace.ai@gmail.com.</span>
             </div>
           </form>
         </div>

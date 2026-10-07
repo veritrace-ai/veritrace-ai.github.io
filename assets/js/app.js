@@ -643,21 +643,88 @@
     });
   }
 
+  /* ----------------------------------------------------------------------
+     11. Forms
+     ----------------------------------------------------------------------
+     Two modes:
+
+     1. AJAX (data-ajax + an action) — posts to a form provider, e.g.
+        Web3Forms, and reports real success/failure. This is what the
+        contact and subscribe forms use. No backend required.
+     2. Demo — no action attribute; simulates a submit so a template can be
+        previewed without credentials.
+     ---------------------------------------------------------------------- */
+  var PLACEHOLDER_KEY = 'REPLACE_WITH_WEB3FORMS_ACCESS_KEY';
+
   function initForms() {
-    $$('[data-form]').forEach(function (form) {
+    $$('form[data-form]').forEach(function (form) {
+      var action = form.getAttribute('action');
+      var isAjax = form.hasAttribute('data-ajax') && action;
+      var ok = form.querySelector('.form__ok');
+      var err = form.querySelector('.form__err');
+      var btn = form.querySelector('[type="submit"]');
+      var label = btn ? btn.querySelector('.btn__label') : null;
+
+      function say(el, message) {
+        if (!el) return;
+        if (message) {
+          var span = el.querySelector('span');
+          if (span) span.textContent = message;
+        }
+        el.classList.add('is-visible');
+        gsap.fromTo(el, { autoAlpha: 0, y: 12 }, { autoAlpha: 1, y: 0, duration: 0.55, ease: 'expo.out' });
+      }
+
+      function busy(state) {
+        if (btn) btn.disabled = state;
+        if (label) label.textContent = state ? 'Sending…' : label.getAttribute('data-label') || label.textContent;
+      }
+
+      if (label && !label.getAttribute('data-label')) label.setAttribute('data-label', label.textContent);
+
       form.addEventListener('submit', function (e) {
         e.preventDefault();
-        var ok = form.querySelector('.form__ok');
-        var btn = form.querySelector('[type="submit"]');
-        if (btn) { btn.disabled = true; btn.style.opacity = '0.7'; }
-        window.setTimeout(function () {
-          if (ok) {
-            ok.classList.add('is-visible');
-            gsap.fromTo(ok, { autoAlpha: 0, y: 12 }, { autoAlpha: 1, y: 0, duration: 0.6, ease: 'expo.out' });
-          }
-          form.reset();
-          if (btn) { btn.disabled = false; btn.style.opacity = '1'; }
-        }, 750);
+        if (ok) ok.classList.remove('is-visible');
+        if (err) err.classList.remove('is-visible');
+
+        if (!isAjax) {
+          // Demo mode
+          busy(true);
+          window.setTimeout(function () {
+            busy(false);
+            say(ok, 'Demonstration only — connect a form provider to receive real submissions.');
+          }, 600);
+          return;
+        }
+
+        var keyInput = form.querySelector('[name="access_key"]');
+        if (!keyInput || !keyInput.value || keyInput.value === PLACEHOLDER_KEY) {
+          say(err, 'The form is not connected yet. Please email veritrace.ai@gmail.com directly.');
+          return;
+        }
+
+        busy(true);
+        var data = new FormData(form);
+
+        fetch(action, {
+          method: 'POST',
+          body: data,
+          headers: { Accept: 'application/json' }
+        })
+          .then(function (res) { return res.json().catch(function () { return { success: res.ok }; }); })
+          .then(function (json) {
+            busy(false);
+            if (json && json.success) {
+              form.reset();
+              say(ok, null);
+            } else {
+              say(err, (json && json.message) || 'Something went wrong. Please try again or email us directly.');
+            }
+          })
+          .catch(function () {
+            busy(false);
+            say(err, 'Network error. Please try again or email veritrace.ai@gmail.com directly.');
+          });
       });
     });
   }

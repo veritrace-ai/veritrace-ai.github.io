@@ -42,15 +42,23 @@ jobs:
           set -euo pipefail
           mkdir -p dist
 
-          # Public pages
+          # Root-level files: index.html and 404.html
           cp ./*.html dist/
+
+          # Page folders — each holds an index.html so URLs stay extensionless.
+          # Disable globbing fallback so an empty match doesn't iterate.
+          shopt -s nullglob
+          for d in */; do
+            name="${d%/}"
+            case "$name" in
+              _*|assets|docs|node_modules) continue ;;
+            esac
+            cp -r "$d" dist/
+          done
+          shopt -u nullglob
 
           # Static assets
           cp -r assets dist/
-
-          # Brand sheet (kept out of the main navigation, still linked internally)
-          mkdir -p dist/brand
-          cp ./brand/index.html dist/brand/
 
           # SEO / PWA files — each optional, so guard with `if` rather than
           # `[ -f x ] && cp`, which returns a non-zero status when the file is
@@ -70,6 +78,9 @@ jobs:
 
           # Stop GitHub Pages from running Jekyll over the output
           touch dist/.nojekyll
+
+          echo "Published files:"
+          find dist -type f | sort | sed 's/^/  /'
 
           echo "Published files:"
           find dist -type f | sort | sed 's/^/  /'

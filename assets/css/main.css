@@ -1450,6 +1450,19 @@ body.vt-menu-open .drawer { pointer-events: auto; }
   font-size: var(--fs-sm);
 }
 .form__ok.is-visible { display: flex; }
+.form__err {
+  display: none;
+  align-items: center;
+  gap: .6rem;
+  padding: .85rem 1.05rem;
+  border-radius: var(--radius-sm);
+  background: var(--vt-red-50);
+  border: 1px solid rgba(217,45,32,.3);
+  color: var(--vt-red);
+  font-size: var(--fs-sm);
+}
+.form__err.is-visible { display: flex; }
+.form button[disabled] { opacity: .65; cursor: progress; }
 
 /* --------------------------------------------------------------------------
    24. FOOTER  (deep navy anchor)
