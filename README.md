@@ -146,20 +146,35 @@ in the markup, so content authors never touch JavaScript.
 The site is static — there is no server to receive a submission. Forms post to a hosted
 form provider that forwards to email.
 
-**Currently wired to [Web3Forms](https://web3forms.com)** — free, unlimited submissions, no
-backend, sends straight to your inbox.
+**Currently wired to [Web3Forms](https://web3forms.com)** — free tier, no backend, sends straight
+to your inbox. The free plan allows **250 submissions/month**, unlimited forms and unlimited
+domains, which is ample for a marketing site. Pro ($12/mo) adds file uploads, autoresponders,
+reCAPTCHA/Turnstile, webhooks and multiple recipients.
 
-### One-time setup (2 minutes)
+### One-time setup (3 minutes)
 
-1. Go to <https://web3forms.com> and enter **`veritrace.ai@gmail.com`**.
-2. Check that inbox for the access key.
-3. Paste it into `_pages/contact.html`, replacing `REPLACE_WITH_WEB3FORMS_ACCESS_KEY`:
+Web3Forms has no separate signup — signing in with your email **is** creating the account.
+
+1. Go to **[web3forms.com](https://web3forms.com/)** and click **"Create your Form — Free"**.
+   That opens `app.web3forms.com` with *"Login or create your account"*.
+2. Enter **`veritrace.ai@gmail.com`** and click **Continue with Email**.
+   (Or use **Continue with Google** if that address is a Google account.)
+3. Open that inbox — Web3Forms sends a **passwordless sign-in link**. Click it to land in the
+   dashboard. There is no password to set unless you choose "Log in with password instead".
+4. In the dashboard, create a form. It shows an **Access Key** that looks like
+   `a1b2c3d4-1234-5678-9abc-def012345678`.
+5. Paste that key into `_pages/contact.html`, replacing `REPLACE_WITH_WEB3FORMS_ACCESS_KEY`:
 
 ```html
 <input type="hidden" name="access_key" value="your-key-here">
 ```
 
-4. `node build.js` and push.
+6. `node build.js` and push.
+
+> **The access key is not a secret.** It acts as an alias for your email address and is
+> designed to be public in client-side HTML — Web3Forms state this explicitly in their FAQ.
+> Anyone reading your page source can see it, and that is expected. To stop other sites
+> using it, upgrade to Pro and enable **Restrict to Domains**.
 
 Until a real key is in place, the form detects the placeholder and shows
 *"The form is not connected yet"* with your email address — so a misconfiguration is visible
